@@ -1,0 +1,21 @@
+import telebot
+import json
+from geg import baraban
+bot = telebot.TeleBot('6982199277:AAHUtRl9sWyGUqTat6LA3MqshxRenUlWQ18')
+obyavl = None
+@bot.message_handler(commands=['start', 'а', 'дурачок'])
+def main(message):
+    obyavl = baraban()
+    for i in obyavl:
+        if len(i) != 0:
+            file = open('bred.txt', 'r', encoding='utf-8')
+            fuu = file.read()
+            if i not in fuu:
+                bot.send_message(message.chat.id, i)
+    print(1234)
+    mf = open('bred.txt', 'w', encoding='utf-8')
+    for i in obyavl:
+        mf.write(i)
+        mf.write('\n')
+
+bot.polling(none_stop=True)
