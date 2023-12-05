@@ -1,0 +1,60 @@
+from bs4 import BeautifulSoup
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+def baraban():
+    options = webdriver.ChromeOptions()
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36")
+    driver = webdriver.Chrome()
+    try:
+        driver.get('https://net-school.cap.ru/about.asp')
+        time.sleep(1)
+        hh_input = Select(driver.find_element(By.ID, "schools"))
+        time.sleep(3)
+        hh_input.select_by_value('523')
+
+
+        email_input = driver.find_element(By.NAME, "UN")
+        email_input.send_keys("yourlogin")
+        time.sleep(1)
+
+
+        password_input = driver.find_element(By.NAME, "PW")
+        password_input.send_keys("yourpassword")
+        time.sleep(1)
+
+        dadaw = driver.find_element(By.CLASS_NAME, "button-login-title").click()
+        time.sleep(3)
+
+        driver.refresh()
+        time.sleep(2)
+        #не робит
+        with open("indeyx.html", "w", encoding="utf-8") as file:
+           file.write(driver.page_source)
+        print(6)
+        time.sleep(7)
+
+    except Exception as ex:
+        pass
+
+    finally:
+        driver.close()
+        driver.quit()
+
+
+    src = open(r"C:\Users\User\PycharmProjects\pythonProject3\indeyx.html", "r", encoding="utf-8")
+    soup = BeautifulSoup(src, "lxml")
+    items_divs = soup.find_all("div", class_= "ng-binding")
+
+    #return items_divs
+    farel = []
+    #with open (r"C:\Users\User\PycharmProjects\pythonProject3\bred.json", "w", encoding="utf-8") as file:
+    for i in items_divs:
+        ff = i.text
+        ff1 = ff.replace('\xa0', '')
+        farel.append(ff1)
+    return farel
+
+if __name__ == "__main__":
+    main()
