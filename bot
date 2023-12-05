@@ -1,5 +1,4 @@
 import telebot
-import json
 from geg import baraban
 bot = telebot.TeleBot('6989sWTa6LA3MqnUlW18')
 obyavl = None
