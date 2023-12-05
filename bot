@@ -1,7 +1,7 @@
 import telebot
 import json
 from geg import baraban
-bot = telebot.TeleBot('6982199277:AAHUtRl9sWyGUqTat6LA3MqshxRenUlWQ18')
+bot = telebot.TeleBot('698277:AAHUtRl9sWTat6LA3MqshxRenUlWQ18')
 obyavl = None
 @bot.message_handler(commands=['start', 'а', 'дурачок'])
 def main(message):
