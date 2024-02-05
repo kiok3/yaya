@@ -1,0 +1,23 @@
+import telebot
+import schedule
+import time
+from geg import baraban
+bot = telebot.TeleBot('токен')
+obyavl = None
+def job():
+    chat_id = '1277778821'
+    obyavl = baraban()
+    for i in obyavl:
+        if len(i) != 0:
+            file = open('bred.txt', 'r', encoding='utf-8')
+            fuu = file.read()
+            if i not in fuu:
+                bot.send_message(chat_id, i)
+    mf = open('bred.txt', 'w', encoding='utf-8')
+    for i in obyavl:
+        mf.write(i)
+        mf.write('\n')
+schedule.every().hour.at(":00").do(job)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
